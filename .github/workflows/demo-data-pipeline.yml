@@ -82,8 +82,8 @@ jobs:
           spec: cypress/tests/ui/*
           tag: scheduled,web-app
           config-file: cypress.config.ts
+          config: "projectId=${{ secrets.PROJECT_ID_WEB_APP }}"
         env:
-          CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID_WEB_APP }}
           CYPRESS_RECORD_KEY: ${{ secrets.RECORD_KEY_WEB_APP }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -120,8 +120,8 @@ jobs:
           spec: cypress/tests/api/*
           tag: scheduled,api-services
           config-file: cypress.config.ts
+          config: "projectId=${{ secrets.PROJECT_ID_API }}"
         env:
-          CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID_API }}
           CYPRESS_RECORD_KEY: ${{ secrets.RECORD_KEY_API }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -162,10 +162,9 @@ jobs:
           group: "Mobile Web - Chrome"
           spec: cypress/tests/ui/*
           tag: scheduled,mobile-web
-          config: '{"e2e":{"viewportWidth":375,"viewportHeight":812}}'
+          config: '{"e2e":{"viewportWidth":375,"viewportHeight":812},"projectId=${{ secrets.PROJECT_ID_MOBILE }}"}'
           config-file: cypress.config.ts
         env:
-          CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID_MOBILE }}
           CYPRESS_RECORD_KEY: ${{ secrets.RECORD_KEY_MOBILE }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -202,8 +201,8 @@ jobs:
           group: "Design System - Components"
           tag: scheduled,design-system
           config-file: cypress.config.ts
+          config: "projectId=${{ secrets.PROJECT_ID_DESIGN_SYSTEM }}"
         env:
-          CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID_DESIGN_SYSTEM }}
           CYPRESS_RECORD_KEY: ${{ secrets.RECORD_KEY_DESIGN_SYSTEM }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -240,7 +239,7 @@ jobs:
           spec: "cypress/tests/ui/auth.spec.ts,cypress/tests/ui/bankaccounts.spec.ts,cypress/tests/ui/user-settings.spec.ts"
           tag: scheduled,admin-portal
           config-file: cypress.config.ts
+          config: "projectId=${{ secrets.PROJECT_ID_ADMIN }}"
         env:
-          CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID_ADMIN }}
           CYPRESS_RECORD_KEY: ${{ secrets.RECORD_KEY_ADMIN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
