@@ -162,9 +162,10 @@ jobs:
           group: "Mobile Web - Chrome"
           spec: cypress/tests/ui/*
           tag: scheduled,mobile-web
-          config: '{"e2e":{"viewportWidth":375,"viewportHeight":812},"projectId=${{ vars.PROJECT_ID_MOBILE }}"}'
+          config: '{"e2e":{"viewportWidth":375,"viewportHeight":812}}'
           config-file: cypress.config.ts
         env:
+          CYPRESS_PROJECT_ID: ${{ vars.PROJECT_ID_MOBILE }}
           CYPRESS_RECORD_KEY: ${{ secrets.RECORD_KEY_MOBILE }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
