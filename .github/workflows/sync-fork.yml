@@ -33,11 +33,11 @@ jobs:
           DIFF=$(git rev-list HEAD..upstream/develop --count)
           echo "commits_behind=$DIFF" >> $GITHUB_OUTPUT
 
-      - name: Merge upstream into main
+      - name: Merge upstream into develop
         if: steps.check.outputs.commits_behind != '0'
         run: |
           git merge upstream/develop --no-edit
-          git push origin main
+          git push origin develop
 
   sync-demo-branches:
     needs: sync-main
@@ -66,8 +66,8 @@ jobs:
       - name: Check for merge conflict
         id: conflict-check
         run: |
-          git fetch origin main
-          MERGE_BASE=$(git merge-base HEAD origin/main)
+          git fetch origin develop
+          MERGE_BASE=$(git merge-base HEAD origin/develop)
           CONFLICT=$(git merge-tree $MERGE_BASE origin/main HEAD | grep '<<<<<<<' || true)
           if [ -n "$CONFLICT" ]; then
             echo "has_conflict=true" >> $GITHUB_OUTPUT
@@ -75,10 +75,10 @@ jobs:
             echo "has_conflict=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Merge main into demo branch
+      - name: Merge develop into demo branch
         if: steps.conflict-check.outputs.has_conflict == 'false'
         run: |
-          git merge origin/main --no-edit
+          git merge origin/develop --no-edit
           git push origin ${{ matrix.branch }}
 
       - name: Create PR on conflict
@@ -90,7 +90,7 @@ jobs:
             const shortSha = '${{ github.sha }}'.substring(0, 7);
             const resolveBranch = `sync/${branch.replace('/', '-')}-${shortSha}`;
 
-            await exec.exec('git', ['checkout', '-b', resolveBranch, 'origin/main']);
+            await exec.exec('git', ['checkout', '-b', resolveBranch, 'origin/develop']);
             await exec.exec('git', ['push', 'origin', resolveBranch]);
 
             await github.rest.pulls.create({
@@ -98,6 +98,6 @@ jobs:
               repo: context.repo.repo,
               base: branch,
               head: resolveBranch,
-              title: `chore: sync main into ${branch}`,
-              body: `Automatic merge of main into \`${branch}\` failed due to conflicts.\n\nPlease resolve manually. **Do not squash merge.**`,
+              title: `chore: sync develop into ${branch}`,
+              body: `Automatic merge of develop into \`${branch}\` failed due to conflicts.\n\nPlease resolve manually. **Do not squash merge.**`,
             });
