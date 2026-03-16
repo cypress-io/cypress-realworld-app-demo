@@ -114,7 +114,7 @@ jobs:
           start: yarn start:ci
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
-          browser: chrome
+          browser: electron
           record: true
           group: "API Services"
           spec: cypress/tests/api/*
