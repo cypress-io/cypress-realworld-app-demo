@@ -13,8 +13,25 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           href="https://cypress.io"
-          aria-label="Cypress - visit cypress.io"
+          aria-label="Cypress — visit cypress.io"
+          title="Cypress — visit cypress.io"
         >
+          {/* Screen-reader text: Cypress Cloud a11y expects visible-to-SR text or aria-label/title */}
+          <span
+            style={{
+              position: "absolute",
+              width: 1,
+              height: 1,
+              padding: 0,
+              margin: -1,
+              overflow: "hidden",
+              clip: "rect(0, 0, 0, 0)",
+              whiteSpace: "nowrap",
+              border: 0,
+            }}
+          >
+            Cypress
+          </span>
           <CypressLogo
             style={{
               marginTop: -2,

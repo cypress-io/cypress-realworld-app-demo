@@ -1,6 +1,5 @@
 // @ts-check
 import "@cypress/code-coverage/support";
-import "cypress-axe";
 import "./commands";
 import { isMobile } from "./utils";
 
