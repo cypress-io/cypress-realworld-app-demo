@@ -44,6 +44,16 @@ declare namespace Cypress {
      */
     visualSnapshot(maybeName?): Chainable<any>;
 
+    /**
+     * Inject axe-core into the page for accessibility testing
+     */
+    injectAxe(): Chainable<void>;
+
+    /**
+     * Run axe accessibility checks
+     */
+    checkA11y(context?: any, options?: any): Chainable<any>;
+
     getBySel(dataTestAttribute: string, args?: any): Chainable<JQuery<HTMLElement>>;
     getBySelLike(dataTestPrefixAttribute: string, args?: any): Chainable<JQuery<HTMLElement>>;
 

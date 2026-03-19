@@ -13,6 +13,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           href="https://cypress.io"
+          aria-label="Cypress - visit cypress.io"
         >
           <CypressLogo
             style={{
