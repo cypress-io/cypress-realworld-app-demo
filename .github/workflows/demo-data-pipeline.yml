@@ -51,6 +51,7 @@ jobs:
 
   web-app:
     if: >-
+      github.event_name == 'pull_request' ||
       github.event_name == 'schedule' ||
       github.event.inputs.project == 'all' ||
       github.event.inputs.project == 'web-app'
@@ -96,6 +97,7 @@ jobs:
 
   api-services:
     if: >-
+      github.event_name == 'pull_request' ||
       github.event_name == 'schedule' ||
       github.event.inputs.project == 'all' ||
       github.event.inputs.project == 'api-services'
@@ -136,6 +138,7 @@ jobs:
 
   mobile-web:
     if: >-
+      github.event_name == 'pull_request' ||
       github.event_name == 'schedule' ||
       github.event.inputs.project == 'all' ||
       github.event.inputs.project == 'mobile-web'
@@ -182,6 +185,7 @@ jobs:
 
   design-system:
     if: >-
+      github.event_name == 'pull_request' ||
       github.event_name == 'schedule' ||
       github.event.inputs.project == 'all' ||
       github.event.inputs.project == 'design-system'
@@ -222,6 +226,7 @@ jobs:
 
   admin-portal:
     if: >-
+      github.event_name == 'pull_request' ||
       github.event_name == 'schedule' ||
       github.event.inputs.project == 'all' ||
       github.event.inputs.project == 'admin-portal'
