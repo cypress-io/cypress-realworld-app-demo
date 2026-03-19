@@ -4,6 +4,9 @@ on:
   schedule:
     # Weekdays: 7am, 11am, 3pm ET (12:00, 16:00, 20:00 UTC)
     - cron: '0 12,16,20 * * 1-5'
+  pull_request:
+    branches: [develop]
+    types: [opened, synchronize]
   workflow_dispatch:
     inputs:
       project:
@@ -28,6 +31,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.ref }}
 
       - name: Cypress install
         uses: cypress-io/github-action@v6
@@ -62,6 +67,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.ref }}
 
       - name: Download the build folder
         uses: actions/download-artifact@v4
@@ -101,6 +108,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.ref }}
 
       - name: Download the build folder
         uses: actions/download-artifact@v4
@@ -143,6 +152,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.ref }}
 
       - name: Download the build folder
         uses: actions/download-artifact@v4
@@ -183,6 +194,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.ref }}
 
       - name: Download the build folder
         uses: actions/download-artifact@v4
@@ -221,6 +234,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.ref }}
 
       - name: Download the build folder
         uses: actions/download-artifact@v4
