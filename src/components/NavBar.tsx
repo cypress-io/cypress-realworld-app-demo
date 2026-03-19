@@ -24,10 +24,13 @@ import {
   Menu as MenuIcon,
   Notifications as NotificationsIcon,
   AttachMoney as AttachMoneyIcon,
+  DarkMode as DarkModeIcon,
+  LightMode as LightModeIcon,
 } from "@mui/icons-material";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 
 import { DataContext, DataEvents, DataSchema } from "../machines/dataMachine";
+import { useThemeMode } from "../contexts/ThemeContext";
 import TransactionNavTabs from "./TransactionNavTabs";
 import RWALogo from "./SvgRwaLogo";
 import RWALogoIcon from "./SvgRwaIconLogo";
@@ -116,6 +119,7 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ drawerOpen, toggleDrawer, notificationsService }) => {
   const match = useLocation();
+  const { mode, toggleTheme } = useThemeMode();
 
   const theme = useTheme();
   const [notificationsState] = useActor(notificationsService);
@@ -170,6 +174,15 @@ const NavBar: React.FC<NavBarProps> = ({ drawerOpen, toggleDrawer, notifications
         >
           <AttachMoneyIcon /> New
         </Button>
+        <IconButton
+          color="inherit"
+          onClick={() => toggleTheme()}
+          data-test="theme-toggle"
+          aria-label={`Switch to ${mode === "light" ? "dark" : "light"} mode`}
+          size="large"
+        >
+          {mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
+        </IconButton>
         <IconButton
           color="inherit"
           component={RouterLink}
