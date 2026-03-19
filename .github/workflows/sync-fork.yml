@@ -14,7 +14,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # token: ${{ secrets.GH_PAT }}
 
       - name: Configure git
         run: |
@@ -46,17 +45,17 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - demo/feature-payments
-          - demo/fix-flaky-login
-          - demo/perf-regression
-          - demo/increase-coverage
+          - feature/dark-mode-toggle
+          - fix/transaction-validation-messages
+          - feature/accessibility-audit
+          - fix/flaky-notification-badge
+          - feature/transaction-notes-ui
     steps:
       - name: Checkout demo branch
         uses: actions/checkout@v4
         with:
           ref: ${{ matrix.branch }}
           fetch-depth: 0
-          # token: ${{ secrets.GH_PAT }}
 
       - name: Configure git
         run: |
