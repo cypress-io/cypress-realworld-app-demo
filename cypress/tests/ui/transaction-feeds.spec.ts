@@ -352,9 +352,10 @@ describe("Transaction Feed", function () {
           cy.getBySel("amount-range-filter-drawer").should("not.exist");
         } else {
           cy.getBySel("transaction-list-filter-amount-clear-button").click();
+          cy.get(".MuiBackdrop-root").click();
+          cy.getBySel("transaction-list-filter-amount-range").should("not.exist");
           cy.getBySel("main").scrollTo("top");
           cy.getBySel("transaction-list-filter-date-range-button").click({ force: true });
-          cy.getBySel("transaction-list-filter-amount-range").should("not.be.visible");
         }
 
         cy.get("@unfilteredResults").then((unfilteredResults) => {
