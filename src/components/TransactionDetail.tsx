@@ -156,6 +156,17 @@ const TransactionDetail: React.FC<TransactionProps> = ({
                 {transaction.description}
               </Typography>
             </Grid>
+            <Grid item>
+              <Typography
+                variant="caption"
+                color="textSecondary"
+                component="div"
+                data-test="transaction-notes-section"
+              >
+                <strong>Notes:</strong>{" "}
+                {transaction.description ? transaction.description : "No notes added"}
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
         <Grid item>

@@ -48,6 +48,15 @@ describe("Transaction View", function () {
     cy.visualSnapshot("Transaction Navigation Tabs Hidden");
   });
 
+  it("displays transaction notes section", function () {
+    cy.getBySelLike("transaction-item").first().click({ force: true });
+    cy.wait("@getTransaction");
+
+    cy.getBySel("transaction-notes-section").should("be.visible");
+    cy.getBySel("transaction-notes-section").should("contain", "Notes:");
+    cy.visualSnapshot("Transaction Notes Section");
+  });
+
   it("likes a transaction", function () {
     // { force: true } is a workaround for https://github.com/cypress-io/cypress/issues/29776
     cy.getBySelLike("transaction-item").first().click({ force: true });
