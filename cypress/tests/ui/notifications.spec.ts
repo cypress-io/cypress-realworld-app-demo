@@ -37,6 +37,8 @@ describe("Notifications", function () {
       );
 
       cy.log("🚩 Renders the notifications badge with count");
+      // Flaky: fixed 30ms wait - badge update may race with React re-render in CI
+      cy.wait(30);
       cy.wait("@getNotifications")
         .its("response.body.results.length")
         .then((notificationCount) => {
