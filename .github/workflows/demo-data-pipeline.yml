@@ -35,7 +35,7 @@ jobs:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.ref }}
 
       - name: Cypress install
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           runTests: false
 
@@ -78,7 +78,7 @@ jobs:
           path: build
 
       - name: "Web App - E2E Tests"
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           start: yarn start:ci
           wait-on: "http://localhost:3000"
@@ -120,7 +120,7 @@ jobs:
           path: build
 
       - name: "API Services - Tests"
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           start: yarn start:ci
           wait-on: "http://localhost:3000"
@@ -165,7 +165,7 @@ jobs:
           path: build
 
       - name: "Mobile Web - E2E Tests"
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           start: yarn start:ci
           wait-on: "http://localhost:3000"
@@ -208,7 +208,7 @@ jobs:
           path: build
 
       - name: "Design System - Component Tests"
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           start: yarn start:ci
           wait-on: "http://localhost:3000"
@@ -249,7 +249,7 @@ jobs:
           path: build
 
       - name: "Admin Portal - E2E Tests"
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           start: yarn start:ci
           wait-on: "http://localhost:3000"
