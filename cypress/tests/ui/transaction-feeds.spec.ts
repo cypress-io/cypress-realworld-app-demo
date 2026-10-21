@@ -191,13 +191,13 @@ describe("Transaction Feed", function () {
         cy.getBySelLike(feed.tab)
           .should("have.class", "Mui-selected")
           .contains(feed.tabLabel, { matchCase: false })
-          .should("have.css", { "text-transform": "uppercase" });
+          .should("have.css", "text-transform", "uppercase");
         cy.getBySel("list-skeleton").should("not.exist");
         cy.visualSnapshot(`Paginate ${feedName}`);
 
         cy.wait(`@${feed.routeAlias}`)
           .its("response.body.results")
-          .should("have.length", Cypress.env("paginationPageSize"));
+          .should("have.length", Cypress.expose("paginationPageSize"));
 
         cy.log("📃 Scroll to next page");
         cy.getBySel("transaction-list").children().scrollTo("bottom");
@@ -205,7 +205,7 @@ describe("Transaction Feed", function () {
         cy.wait(`@${feed.routeAlias}`)
           .its("response.body")
           .then(({ results, pageData }) => {
-            expect(results).have.length(Cypress.env("paginationPageSize"));
+            expect(results).have.length(Cypress.expose("paginationPageSize"));
             expect(pageData.page).to.equal(2);
             cy.visualSnapshot(`Paginate ${feedName} Next Page`);
             cy.nextTransactionFeedPage(feed.service, pageData.totalPages);
@@ -302,7 +302,7 @@ describe("Transaction Feed", function () {
         cy.getBySelLike("empty-create-transaction-button")
           .should("have.attr", "href", "/transaction/new")
           .contains("create a transaction", { matchCase: false })
-          .should("have.css", { "text-transform": "uppercase" });
+          .should("have.css", "text-transform", "uppercase");
         cy.visualSnapshot("No Transactions");
       });
     });
@@ -379,7 +379,7 @@ describe("Transaction Feed", function () {
         cy.getBySelLike("empty-create-transaction-button")
           .should("have.attr", "href", "/transaction/new")
           .contains("create a transaction", { matchCase: false })
-          .should("have.css", { "text-transform": "uppercase" });
+          .should("have.css", "text-transform", "uppercase");
         cy.visualSnapshot("No Transactions");
       });
     });
